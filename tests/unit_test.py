@@ -77,8 +77,10 @@ def test_crawl_obj(crawl_obj):
     crawl_obj.proxies_priority = {}
     assert crawl_obj.get('https://www.rtbhouse.com')
 
-    crawl_obj.save_csv('test', 'test')
+    crawl_obj.save_two_columns_csv('test', 'test')
     assert os.path.isfile('results.csv')
 
     with open('results.csv', 'r') as fp:
         assert fp.read()
+
+    assert crawl_obj.parse_js(None) is 'Not found'
